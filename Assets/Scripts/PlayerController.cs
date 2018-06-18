@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	SpriteRenderer Sr;
 	public float horizontalSpeed = 10f ;
 	public float jumpSpeed = 600f;
 	Rigidbody2D rb;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization	
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+		Sr = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -36,10 +38,16 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void MoveHorizontal(float horizontalSpeed){
-		
-		rb.velocity = new Vector2(horizontalSpeed, rb.velocity.y);
+	void MoveHorizontal(float speed){
+		rb.velocity = new Vector2(speed, rb.velocity.y);
 
+	if(speed <0f){
+		Sr.flipX =true; 
+
+	}
+	else if(speed > 0f){
+		Sr.flipX =false;
+		}
 	}
 	void StopMoving(){
 
