@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour {
 	public float feetHeight = 0.05f;
 	public bool isGrounded;
 	public LayerMask WhatIsGround;
-
+	bool canDoubleJump = false;
+	public float delayForDoubleJump = 0.2f;
 	// Use this for initialization	
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -50,14 +51,11 @@ public class PlayerController : MonoBehaviour {
 			StopMovingHorizontal();
 		}
 		//teste para pulo
-		if(isGrounded){
-		if (Input.GetButtonDown("Jump")){
-			Jump();
-		}
-		ShowFalling();
-		}
-		}
-
+			if (Input.GetButtonDown("Jump")){
+				Jump();
+			}
+			ShowFalling();
+	}
 	void MoveHorizontal(float speed){
 		rb.velocity = new Vector2(speed, rb.velocity.y);
 	if(speed <0f){
@@ -81,13 +79,26 @@ public class PlayerController : MonoBehaviour {
 			anim.SetInteger("State", 3);
 		}
 	}
-
 	void Jump(){
+		if(isGrounded){
 		isJumping = true;
 		rb.AddForce(new Vector2(0f, jumpSpeed));
 		anim.SetInteger("State" , 1);
-		Debug.Log(isJumping + "Executou o pulo");
+
+		Invoke("EnableDoubleJump", delayForDoubleJump);
 		}
+		if(canDoubleJump && !isGrounded ){
+			rb.velocity = Vector2.zero;
+		rb.AddForce(new Vector2(0f, jumpSpeed));
+		anim.SetInteger("State" , 1);
+		canDoubleJump = false;
+		}
+	}
+
+	void EnableDoubleJump(){
+		canDoubleJump = true;
+	}
+
 		void OnCollisionEnter2D(Collision2D other){
 			if (other.gameObject.layer == LayerMask.NameToLayer("Ground")){
 				isJumping = false;
