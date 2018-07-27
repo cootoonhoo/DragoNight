@@ -19,15 +19,27 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D rb;
 	Animator anim;
 	bool isJumping = false;
+	public Transform feet;
+	public float feetWidth = 0.2f;
+	public float feetHeight = 0.05f;
+	public bool isGrounded;
+	public LayerMask WhatIsGround;
 
 	// Use this for initialization	
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		Sr = GetComponent<SpriteRenderer>();
 		anim = GetComponent<Animator>();
+	}
+
+	void OnDrawGizmos(){
+		Gizmos.DrawWireCube(feet.position, new Vector3(feetWidth,feetHeight,0f));
 	}	
 	// Update is called once per frame
 	void Update () {
+
+		isGrounded = Physics2D.OverlapBox(new Vector2(feet.position.x,feet.position.y), new Vector2(feetWidth, feetHeight), 360.0f, WhatIsGround);
+
 //teste para andar
 		float horizontalInput = Input.GetAxisRaw("Horizontal"); // -1 Esquerda, 1 Direita
 		float horizontalPlayerSpeed = horizontalSpeed*horizontalInput;
@@ -38,11 +50,14 @@ public class PlayerController : MonoBehaviour {
 			StopMovingHorizontal();
 		}
 		//teste para pulo
+		if(isGrounded){
 		if (Input.GetButtonDown("Jump")){
 			Jump();
 		}
 		ShowFalling();
-	}
+		}
+		}
+
 	void MoveHorizontal(float speed){
 		rb.velocity = new Vector2(speed, rb.velocity.y);
 	if(speed <0f){

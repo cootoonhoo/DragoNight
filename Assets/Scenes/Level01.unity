@@ -5818,7 +5818,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.5003, y: -2.1056, z: 0}
   m_LocalScale: {x: 0.52674955, y: 0.52674955, z: 0.52674955}
-  m_Children: []
+  m_Children:
+  - {fileID: 1952541187}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5860,7 +5861,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.55
   m_GravityScale: 2.5
   m_Material: {fileID: 6200000, guid: e84cd55a420a7674691fce096577158c, type: 2}
   m_Interpolate: 0
@@ -5880,6 +5881,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 4.5
   jumpSpeed: 450
+  feet: {fileID: 1952541187}
+  feetWidth: 0.45
+  feetHeight: 0.05
+  isGrounded: 0
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &668723982
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,3 +6670,31 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
+--- !u!1 &1952541186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1952541187}
+  m_Layer: 11
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952541187
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1952541186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.161, y: -0.727, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 369304966}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
