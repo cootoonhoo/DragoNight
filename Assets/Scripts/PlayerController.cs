@@ -109,6 +109,12 @@ public class PlayerController : MonoBehaviour {
 				isJumping = false;
 			}
 		}
+
+		void OnTriggerEnter2D(Collider2D other){
+		if(other.gameObject.CompareTag("Coin")){
+		Destroy(other.gameObject);
+		}
+	}
 	}
 
 
