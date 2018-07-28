@@ -16,7 +16,7 @@ namespace UnityStandardAssets._2D
         private Vector3 m_CurrentVelocity;
         private Vector3 m_LookAheadPos;
         public float yMin = -3.2f;
-
+        
         // Use this for initialization
         private void Start()
         {
