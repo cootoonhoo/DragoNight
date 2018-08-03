@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4894048308544762}
   - component: {fileID: 68861263410904056}
   - component: {fileID: 50138157413374902}
+  - component: {fileID: 114278735383896508}
   m_Layer: 11
   m_Name: Feet
   m_TagString: Untagged
@@ -149,7 +150,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.05}
@@ -195,6 +196,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   delayForDoubleJump: 0.2
+--- !u!114 &114278735383896508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1125716130170348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88ebfa137028f84dbaebc8c83fde22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212747371407048806
 SpriteRenderer:
   m_ObjectHideFlags: 1
