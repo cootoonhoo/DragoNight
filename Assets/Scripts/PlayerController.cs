@@ -118,8 +118,8 @@ public class PlayerController : MonoBehaviour {
 			AudioManager.instace.PlayCoinPickup(other.gameObject);
 			GM.instance.IncrementCoinCount();
 		Destroy(other.gameObject);
+			}
 		}
-	}
 	}
 
 
