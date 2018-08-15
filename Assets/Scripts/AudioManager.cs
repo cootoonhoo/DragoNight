@@ -21,5 +21,8 @@ void Awake(){
 	public void PlayJumpSound(GameObject obj){
 		AudioSource.PlayClipAtPoint(audioPlayer.Jump, obj.transform.position);
 	}
+	public void PlayFailSound(GameObject obj){
+		AudioSource.PlayClipAtPoint(audioSFX.Fail, obj.transform.position);
+	}
 }
 

@@ -91,16 +91,24 @@ public class GM : MonoBehaviour {
 		Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 		}
 	}
+	IEnumerator MuteMusic(bool vaule, float deley){
+		yield return new WaitForSeconds(deley);
+		Camera.main.GetComponentInChildren<AudioSource>().mute = vaule;
+	}
 
 	public void HurtPlayer(){
 		if(player!= null){
+			StartCoroutine (MuteMusic(true, 0f));
+			AudioManager.instace.PlayFailSound(player.gameObject);
 			DisalbeAndPushPlayer();
 			Destroy(player.gameObject, timeToKill);
 			DecrementLives();
 			if(data.lifeCount > 0 ){
+				StartCoroutine (MuteMusic(false, timeToKill + timeToRespwan));
 			Invoke("RespawnPlayer", timeToKill + timeToRespwan);
 			}
 			else{
+				StartCoroutine (MuteMusic(false, timeToKill));
 				GameOver();
 			}
 		}		
@@ -139,7 +147,7 @@ public class GM : MonoBehaviour {
 	void DisalbeAndPushPlayer(){
 		player.transform.GetComponent<PlayerController>().enabled = false;
 		foreach(Collider2D c2d in player.transform.GetComponents<Collider2D>()){
-			c2d.enabled = true;
+			c2d.enabled = true; // Proposital <- pro player ficar no "chão"
 		}
 		foreach(Transform child in player.transform){
 			child.gameObject.SetActive(false);
