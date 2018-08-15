@@ -12,6 +12,7 @@ public class GM : MonoBehaviour {
 	public Transform spawnPoint;
 	public GameObject playerPrefab;
 	public float timeToRespwan = 1.5f;
+	public float timeToKill = 1.5f;
 	public float maxTime = 120f;
 	bool timerOn = true;
 	float timeLeft;
@@ -91,6 +92,19 @@ public class GM : MonoBehaviour {
 		}
 	}
 
+	public void HurtPlayer(){
+		if(player!= null){
+			DisalbeAndPushPlayer();
+			Destroy(player.gameObject, timeToKill);
+			DecrementLives();
+			if(data.lifeCount > 0 ){
+			Invoke("RespawnPlayer", timeToKill + timeToRespwan);
+			}
+			else{
+				GameOver();
+			}
+		}		
+	}
 	public void KillPlayer(){
 		if(player!= null){
 			Destroy(player.gameObject);
@@ -121,5 +135,17 @@ public class GM : MonoBehaviour {
 		ui.levelComplete.txtCoinCount.text = "Coins " + data.coinCount;
 		ui.levelComplete.txtTimer.text = "Timer: "+ timeLeft.ToString("F1");
 		ui.levelComplete.levelCompletePanel.SetActive(true);
+	}
+	void DisalbeAndPushPlayer(){
+		player.transform.GetComponent<PlayerController>().enabled = false;
+		foreach(Collider2D c2d in player.transform.GetComponents<Collider2D>()){
+			c2d.enabled = true;
+		}
+		foreach(Transform child in player.transform){
+			child.gameObject.SetActive(false);
+		}
+		Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+		rb.velocity = Vector2.zero;
+		rb.AddForce(new Vector2(-150f, 400f));
 	}
 }
