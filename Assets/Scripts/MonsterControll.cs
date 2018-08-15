@@ -12,9 +12,26 @@ public class MonsterControll : MonoBehaviour {
 		sr = GetComponent<SpriteRenderer>();
 	}
 		void Update () {
+			if (transform.position.y < GM.instance.yMinLive){
+				Destroy(gameObject);
+			}
 			Move();
 	}
 	void Move(){
 		rb.velocity = new Vector2(speed, rb.velocity.y);
+	}
+	void OnCollisionEnter2D(Collision2D other){
+		if (!other.gameObject.CompareTag("Player")){
+			Flip();
+		}
+	}
+	void Flip(){
+		speed = -speed;
+		if(speed < 0 ){
+			sr.flipX = true;
+		}
+		else if (speed > 0){
+			sr.flipX = false;
+		}
 	}
 }
