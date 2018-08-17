@@ -147,7 +147,7 @@ public class GM : MonoBehaviour {
 	void DisalbeAndPushPlayer(){
 		player.transform.GetComponent<PlayerController>().enabled = false;
 		foreach(Collider2D c2d in player.transform.GetComponents<Collider2D>()){
-			c2d.enabled = true; // Proposital <- pro player ficar no "chão"
+			c2d.enabled = false;
 		}
 		foreach(Transform child in player.transform){
 			child.gameObject.SetActive(false);
