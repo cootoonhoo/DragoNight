@@ -125,6 +125,12 @@ public class PlayerController : MonoBehaviour {
 			Destroy(other.gameObject);
 				break;
 
+				case "CheckPoint":
+			GameObject obj = GameObject.Find("SpawnPoint");
+			obj.transform.position = other.transform.position;
+				break;
+				
+
 				case "Finish":
 				GM.instance.LevelComplete();
 				break;
