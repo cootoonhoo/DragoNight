@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 50988419101707062}
   - component: {fileID: 70391007441525746}
   - component: {fileID: 114838430385762480}
-  m_Layer: 0
+  - component: {fileID: 114834980853450638}
+  m_Layer: 12
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,12 +73,24 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0091721695, y: 0.000035126395}
   m_Size: {x: 0.41678438, y: 0.1782557}
   m_Direction: 1
+--- !u!114 &114834980853450638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534964180289448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723fbb264f2344745824778f54d3a68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 3
 --- !u!114 &114838430385762480
 MonoBehaviour:
   m_ObjectHideFlags: 1
